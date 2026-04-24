@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s 
+
+scrape_configs:
+  - job_name: 'monitor application server'
+    static_configs:
+      - targets: ['35.221.143.227:9100']
