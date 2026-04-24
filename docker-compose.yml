@@ -19,6 +19,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    user: "472"
     restart: unless-stopped
     ports:
       - "3000:3000"
