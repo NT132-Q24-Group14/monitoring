@@ -8,8 +8,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ~/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml' # map the configuration file
@@ -25,7 +24,7 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana:/etc/grafana/provisioning
+      - ./grafana:/etc/grafana/provisioning:ro
 
 volumes:
   prometheus_data:
