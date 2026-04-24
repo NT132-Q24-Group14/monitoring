@@ -24,7 +24,7 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana:/etc/grafana/provisioning:ro
+      - ./grafana/provisioning:/etc/grafana/provisioning
 
 volumes:
   prometheus_data:
