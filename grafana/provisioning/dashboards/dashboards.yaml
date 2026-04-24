@@ -8,5 +8,5 @@ providers:
     disableDeletion: true
     allowUiUpdates: false             
     options:
-      path: /etc/grafana/provisioning/dashboards_files
+      path: /var/lib/grafana/dashboards
 

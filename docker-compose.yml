@@ -25,6 +25,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards_json:/var/lib/grafana/dashboards
 
 volumes:
   prometheus_data:
