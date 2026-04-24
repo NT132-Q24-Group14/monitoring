@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: 'Monitoring dashboard'         
+    orgId: 1
+    folder: 'Infrastructure'          
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false             
+    options:
+      path: /etc/grafana/provisioning/dashboards/json_files
+
