@@ -8,5 +8,5 @@ providers:
     disableDeletion: true
     allowUiUpdates: false             
     options:
-      path: /etc/grafana/provisioning/dashboards/json_files
+      path: /etc/grafana/provisioning/json_files
 
