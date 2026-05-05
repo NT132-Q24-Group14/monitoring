@@ -1,0 +1,51 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://34.80.22.72:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: syslog
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: syslog
+          host: vm2
+          __path__: /var/log/syslog
+
+    pipeline_stages:
+      - drop:
+          expression: ".*systemd.*Starting.*"
+      - drop:
+          expression: ".*CRON.*"
+
+  - job_name: auth
+    static_configs:
+      - targets: 
+          - localhost
+        labels:
+          job: auth
+          host: vm2
+          __path__: /var/log/auth.log
+
+    pipeline_stages:
+      - regex:
+          expression: 'sshd\[\d+\]: (?P<message>.*)'
+
+  - job_name: docker
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: docker
+          host: vm2
+          __path__: /var/lib/docker/containers/*/*-json.log
+
+    pipeline_stages:
+      - docker: {}
+  
