@@ -27,7 +27,27 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/provisioning/dashboards_json:/var/lib/grafana/dashboards
+    environment:
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=24521899@gm.uit.edu.vn
+      - GF_SMTP_PASSWORD=sfvnazgimjwtbqhe  
+      - GF_SMTP_FROM_ADDRESS=24521899@gm.uit.edu.vn
+      - GF_SMTP_FROM_NAME=Grafana
+      - GF_SMTP_SKIP_VERIFY=false
+      - GF_SMTP_STARTTLS_POLICY=MandatoryStartTLS
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/local-config.yaml
+      - ./loki-data:/var/lib/loki
 
 volumes:
   prometheus_data:
   grafana_data:
+  loki_data:
